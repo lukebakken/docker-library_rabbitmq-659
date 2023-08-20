@@ -1,9 +1,4 @@
 {
-  "vhosts": [
-    {
-      "name": "/"
-    }
-  ],
   "users": [
     {
       "name": "admin-PROD",
