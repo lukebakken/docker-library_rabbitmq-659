@@ -1,3 +1,11 @@
 FROM rabbitmq:management-alpine
-COPY --chown=rabbitmq:rabbitmq rabbitmq.conf /etc/rabbitmq/
-COPY --chown=rabbitmq:rabbitmq definitions.json /etc/rabbitmq/
+ARG BUILD_ENV=DEV
+
+RUN echo "BUILD_ENV: $BUILD_ENV"
+
+WORKDIR /etc/rabbitmq
+COPY --chown=rabbitmq:rabbitmq rabbitmq.conf .
+
+WORKDIR /etc/rabbitmq/defs.d
+COPY --chown=rabbitmq:rabbitmq definitions.json .
+COPY --chown=rabbitmq:rabbitmq definitions-${BUILD_ENV}.json .
